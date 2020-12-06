@@ -269,5 +269,37 @@ class RedisLock(object):
         return expire
 
 
+class HeaderFormater(object):
+    @staticmethod
+    def format_content_disposition(value: str):
+        """
+            格式化 Content-Disposition
+            https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Disposition
+
+            处理例如
+                'attachment; filename="InterimStaffReportNYMEX_WTICrudeOil.pdf"',
+                'attachment; filename=InterimStaffReportNYMEX_WTICrudeOil.pdf'
+                'attachment;filename=%E5%8D%8E%E5%A4%8F%E7%BA%A2%E5%88%A9%E6%B7%B7%E5%90%88%E5%9E%8B%E8%AF%81%E5%88%B8%E6%8A%95%E8%B5%84%E5%9F%BA%E9%87%912019%E5%B9%B4%E7%AC%AC3%E5%AD%A3%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf'
+        Args:
+            value: Content-Disposition的值
+
+        Returns:
+
+        """
+        r = {"type": "", "name": "", "filename": "", "filename*": ""}
+        value = value.strip()
+        if not value:
+            return r
+        value = [x.strip() for x in value.split(";")]
+        r["type"] = value[0]
+
+        for v in value[1:]:
+            k_park, v_part = v.split("=", 1)
+            k_park = k_park.lower()
+            # 处理value有引号的情况
+            r[k_park] = v_part.strip("'\"")
+        return r
+
+
 if __name__ == "__main__":
     assert remove_control_characters("a\nasdf\x82") == "a\nasdf"
