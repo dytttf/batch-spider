@@ -15,11 +15,11 @@ except ImportError:
 class DB(object):
     """
     数据库工厂
-        db = DB().create("mysql://root:123456@localhost:3306/test")
-        db = DB().create("mysql+pymysql://root:123456@localhost:3306/test")
-        db = DB().create("mysql+mysqldb://root:123456@localhost:3306/test")
+        db = DB().create("mysql://root:******@localhost:3306/test")
+        db = DB().create("mysql+pymysql://root:******@localhost:3306/test")
+        db = DB().create("mysql+mysqldb://root:******@localhost:3306/test")
         mysql:
-            mysql://root:123456@localhost:3306/test
+            mysql://root:******@localhost:3306/test
         oracle:
             oracle://username:password@ip:port/db?charset=utf8
             oracle://sys:chang_on_install@127.0.0.1:1521/orcl?charset=utf8
