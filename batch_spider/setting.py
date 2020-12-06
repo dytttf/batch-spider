@@ -14,6 +14,7 @@ if 1:
 
     # mysql链接配置
     mysql_base_setting_dict = {
+        "host": "localhost",
         "port": 3306,
         "user": os.getenv("SPIDER_MYSQL_USER"),
         "passwd": os.getenv("SPIDER_MYSQL_PASSWD"),
@@ -23,7 +24,6 @@ if 1:
 
     # 兼容
     default_mysql_setting_dict = mysql_base_setting_dict.copy()
-    default_mysql_setting_dict.update({"host": "localhost"})
     default_mysql_uri = get_mysql_uri(default_mysql_setting_dict)
     #
 
