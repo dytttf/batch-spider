@@ -202,15 +202,6 @@ class SingleBatchSpider(Spider):
         self.redis_conn = redis.StrictRedis(connection_pool=connection_pool)
         default_mysql_uri = kwargs.get("default_mysql_uri", setting.default_mysql_uri)
         self.db = DB().create(default_mysql_uri)
-        #
-        default_oss_uri = kwargs.get("default_oss_uri", setting.default_oss_uri)
-        try:
-            self.oss_db = DB().create(default_oss_uri)
-        except Exception as e:
-            if "no service_line or module" in e.args[0]:
-                self.oss_db = None
-            else:
-                raise e
 
         # redis集群地址
         self._simple_redis_cluster_conn: redis.StrictRedis = None
