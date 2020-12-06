@@ -3,6 +3,9 @@
 """
 import os
 
+#
+IS_SPIDER = int(os.getenv("IS_SPIDER", 0))
+
 if 1:
     # 数据库配置
     def get_mysql_uri(x, protocol="mysql"):
